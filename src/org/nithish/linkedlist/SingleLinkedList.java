@@ -424,7 +424,7 @@ public class SingleLinkedList<T> {
 	 * 
 	 * @param head
 	 */
-	public void  reverseSingleLinkedListRecursively(NodeSLL<T> head,NodeSLL<T> prev) {
+	public void reverseSingleLinkedListRecursively(NodeSLL<T> head, NodeSLL<T> prev) {
 		if (head.getNextNode() == null) {
 			head.setNextNode(prev);
 			System.out.println("################");
@@ -433,10 +433,10 @@ public class SingleLinkedList<T> {
 		} else {
 			NodeSLL<T> temp = head.getNextNode();
 			head.setNextNode(prev);
-			reverseSingleLinkedListRecursively(temp,head);
+			reverseSingleLinkedListRecursively(temp, head);
 		}
 	}
-	
+
 	/**
 	 * Printing a Linked List
 	 */
@@ -446,6 +446,60 @@ public class SingleLinkedList<T> {
 			System.out.println(current.toString());
 			current = current.getNextNode();
 		}
+	}
+
+	/**
+	 * SingleLinkedListIntersection
+	 * @param head1
+	 * @param head2
+	 */
+	public void SingleLinkedListIntersection(NodeSLL<T> head1, NodeSLL<T> head2) {
+		int length1 = lengthOfSLLHead(head1);
+		int length2 = lengthOfSLLHead(head2);
+		NodeSLL<T> current1 = head1;
+		NodeSLL<T> current2 = head2;
+		if (length1 > length2) {
+			int i = 0;
+			while (i != length1 - length2) {
+				current1 = current1.getNextNode();
+				i++;
+			}
+
+		} else if (length2 > length1) {
+			int i = 0;
+			while (i != length2 - length1) {
+				current2 = current2.getNextNode();
+				i++;
+			}
+
+		}
+		while (current1 != null && current2 != null) {
+			if (current1.getData() == current2.getData()) {
+				System.out.println("Intersection Point is: " + current1.getData());
+				break;
+			}
+			current1 = current1.getNextNode();
+			current2 = current2.getNextNode();
+		}
+
+	}
+
+	/**
+	 * No of Elements in SLL
+	 * 
+	 * @return
+	 */
+	public int lengthOfSLLHead(NodeSLL<T> head) {
+		if (head == null) {
+			return 0;
+		}
+		int length = 0;
+		NodeSLL<T> current = head;
+		while (current != null) {
+			current = current.getNextNode();
+			length++;
+		}
+		return length;
 	}
 
 }
