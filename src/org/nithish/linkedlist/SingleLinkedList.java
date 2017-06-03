@@ -428,7 +428,7 @@ public class SingleLinkedList<T> {
 		if (head.getNextNode() == null) {
 			head.setNextNode(prev);
 			System.out.println("################");
-			printLinkedListWithHead(head);
+			printLinkedListWithHeadPointer(head);
 			return;
 		} else {
 			NodeSLL<T> temp = head.getNextNode();
@@ -440,7 +440,7 @@ public class SingleLinkedList<T> {
 	/**
 	 * Printing a Linked List
 	 */
-	public void printLinkedListWithHead(NodeSLL<T> head) {
+	public void printLinkedListWithHeadPointer(NodeSLL<T> head) {
 		NodeSLL<T> current = head;
 		while (current != null) {
 			System.out.println(current.toString());
