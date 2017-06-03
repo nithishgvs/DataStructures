@@ -391,11 +391,61 @@ public class SingleLinkedList<T> {
 				prev = current;
 			}
 			current = current.getNextNode();
-            flag=false;
+			flag = false;
 		}
 
 		return tempHead;
 
+	}
+
+	/**
+	 * Reverse a single linked list Coding with Harsha
+	 * 
+	 * @param head
+	 * @return
+	 */
+	public NodeSLL<T> reverseSingleLinkedList(NodeSLL<T> head) {
+		NodeSLL<T> current = head;
+		NodeSLL<T> temp1 = null;
+		NodeSLL<T> prev = null;
+
+		while (current != null) {
+			temp1 = current.getNextNode();
+			current.setNextNode(prev);
+			prev = current;
+			current = temp1;
+		}
+		head = prev;
+		return head;
+	}
+
+	/**
+	 * Reverse a single linked list Recursive Coding with Harsha
+	 * 
+	 * @param head
+	 */
+	public void  reverseSingleLinkedListRecursively(NodeSLL<T> head,NodeSLL<T> prev) {
+		if (head.getNextNode() == null) {
+			head.setNextNode(prev);
+			System.out.println("################");
+			printLinkedListWithHead(head);
+			return;
+		} else {
+			NodeSLL<T> temp = head.getNextNode();
+			head.setNextNode(prev);
+			reverseSingleLinkedListRecursively(temp,head);
+		}
+	}
+	
+	/**
+	 * Printing a Linked List
+	 */
+	public void printLinkedListWithHead(NodeSLL<T> head) {
+		NodeSLL<T> current = head;
+		while (current != null) {
+			System.out.println(current.toString());
+			current = current.getNextNode();
+		}
 	}
 
 }

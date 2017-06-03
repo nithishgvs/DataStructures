@@ -13,7 +13,7 @@ public class SingleLLInteger {
 	}
 
 	/**
-	 * THis method inserts Integer Data in a sorted LinkedList
+	 * This method inserts Integer Data in a sorted LinkedList
 	 * 
 	 * @param data
 	 */
