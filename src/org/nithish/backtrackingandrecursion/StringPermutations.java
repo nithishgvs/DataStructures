@@ -1,4 +1,4 @@
-package org.nithish.backtracking;
+package org.nithish.backtrackingandrecursion;
 
 import java.util.*;
 import java.lang.*;

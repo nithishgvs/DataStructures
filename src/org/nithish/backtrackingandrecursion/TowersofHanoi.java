@@ -1,4 +1,4 @@
-package org.nithish.backtracking;
+package org.nithish.backtrackingandrecursion;
 
 public class TowersofHanoi {
 
