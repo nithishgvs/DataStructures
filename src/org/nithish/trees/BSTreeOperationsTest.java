@@ -7,7 +7,8 @@ import org.nithish.stack.StackUnderFlowException;
 
 public class BSTreeOperationsTest {
 
-	public static void main(String[] args) throws QueueOverFlowException, QueueUnderFlowException, StackOverFlowException, StackUnderFlowException {
+	public static void main(String[] args)
+			throws QueueOverFlowException, QueueUnderFlowException, StackOverFlowException, StackUnderFlowException {
 		BSTreeOperations bstreeOperations = new BSTreeOperations();
 		Node<Integer> head = bstreeOperations.insertIterative(null, new Node<Integer>(52));
 		bstreeOperations.insertIterative(head, new Node<Integer>(33));
@@ -22,15 +23,17 @@ public class BSTreeOperationsTest {
 		bstreeOperations.insertIterative(head, new Node<Integer>(78));
 		bstreeOperations.insertIterative(head, new Node<Integer>(72));
 		bstreeOperations.insertIterative(head, new Node<Integer>(90));
-		//bstreeOperations.inOrderTraversalIterative(head);
- 
-		
-		Node<Integer> head2 = bstreeOperations.insertIterative(null, new Node<Integer>(52));
-		head2.setLeftChild(new Node<Integer>(93));
-		head2.setRightChild(new Node<Integer>(3));
-		bstreeOperations.getKthSmallestElement(head,4);
-		System.out.println(bstreeOperations.isBST(head2));
-		
+		// bstreeOperations.inOrderTraversalIterative(head);
+
+		bstreeOperations.LowestCommonAncesterBST(head, 39, 48);
+
+		/*
+		 * Node<Integer> head2 = bstreeOperations.insertIterative(null, new
+		 * Node<Integer>(52)); head2.setLeftChild(new Node<Integer>(93));
+		 * head2.setRightChild(new Node<Integer>(3));
+		 * bstreeOperations.getKthSmallestElement(head,4);
+		 * System.out.println(bstreeOperations.isBST(head2));
+		 */
 
 	}
 

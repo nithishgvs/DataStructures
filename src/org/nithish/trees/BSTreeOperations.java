@@ -290,7 +290,8 @@ public class BSTreeOperations {
 	}
 
 	/**
-	 * Get Kth smallest element in a  Tree
+	 * Get Kth smallest element in a Tree
+	 * 
 	 * @param root
 	 * @param K
 	 * @return
@@ -303,7 +304,7 @@ public class BSTreeOperations {
 			return;
 		}
 		Stack<Node> stack = new Stack<Node>();
-		ArrayList<Integer> array=new ArrayList<>();
+		ArrayList<Integer> array = new ArrayList<>();
 		while (true) {
 			if (root != null) {
 				stack.push(root);
@@ -317,8 +318,90 @@ public class BSTreeOperations {
 				root = root.getRightChild();
 			}
 		}
-		System.out.println(K+"th Smallest Element is:"+array.get(K-1));
+		System.out.println(K + "th Smallest Element is:" + array.get(K - 1));
 
+	}
+
+	/**
+	 * ReverseLevelOrderTraversal->1 Stack and 1 Queue
+	 * 
+	 * @param root
+	 * @throws QueueOverFlowException
+	 * @throws QueueUnderFlowException
+	 * @throws StackOverFlowException
+	 * @throws StackUnderFlowException
+	 */
+	public void reverseLevelOrderTraversal(Node<Integer> root)
+			throws QueueOverFlowException, QueueUnderFlowException, StackOverFlowException, StackUnderFlowException {
+		Queue<Node> queue = new Queue<>(Node.class);
+		Stack<Node> stack = new Stack<Node>();
+		queue.enqueue(root);
+		while (!queue.isEmpty()) {
+			Node node = queue.dequeue();
+			if (node.rightChild != null) {
+				queue.enqueue(node.rightChild);
+			}
+			if (node.leftChild != null) {
+				queue.enqueue(node.leftChild);
+			}
+			stack.push(node);
+		}
+		while (!stack.isEmpty()) {
+			System.out.println(stack.pop().data);
+		}
+	}
+
+	/**
+	 * Spiral Order Tree Traversal
+	 * 
+	 * @param root
+	 * @throws StackOverFlowException
+	 * @throws StackUnderFlowException
+	 */
+	public void SpiralOrderTreeTraversal(Node<Integer> root) throws StackOverFlowException, StackUnderFlowException {
+		Stack<Node> stack1 = new Stack<Node>();
+		Stack<Node> stack2 = new Stack<Node>();
+		stack1.push(root);
+		while (true) {
+			while (!stack1.isEmpty()) {
+				Node node = stack1.pop();
+				if (node.getLeftChild() != null) {
+					stack2.push(node.getLeftChild());
+				}
+				if (node.getRightChild() != null) {
+					stack2.push(node.getRightChild());
+				}
+				System.out.println(node.data);
+			}
+			while (!stack2.isEmpty()) {
+				Node node = stack2.pop();
+				if (node.getLeftChild() != null) {
+					stack1.push(node.getRightChild());
+				}
+				if (node.getRightChild() != null) {
+					stack1.push(node.getLeftChild());
+				}
+				System.out.println(node.data);
+			}
+			if (stack2.isEmpty() && stack1.isEmpty()) {
+				break;
+			}
+		}
+	}
+
+	public int LowestCommonAncesterBST(Node<Integer> root, int i1, int i2) {
+		if (root != null) {
+			if (root.data > i1 && root.data > i2) {
+				return LowestCommonAncesterBST(root.leftChild, i1, i2);
+			}
+			if (root.data < i1 && root.data < i2) {
+				return LowestCommonAncesterBST(root.rightChild, i1, i2);
+			} else {
+				System.out.println("Ancestor of " + i1 + " " + i2 + " is : " + root.data);
+				return root.data;
+			}
+		}
+		return 0;
 	}
 
 }
