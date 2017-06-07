@@ -389,6 +389,13 @@ public class BSTreeOperations {
 		}
 	}
 
+	/**
+	 * LowestCommonAncesterBST
+	 * @param root
+	 * @param i1
+	 * @param i2
+	 * @return
+	 */
 	public int LowestCommonAncesterBST(Node<Integer> root, int i1, int i2) {
 		if (root != null) {
 			if (root.data > i1 && root.data > i2) {
