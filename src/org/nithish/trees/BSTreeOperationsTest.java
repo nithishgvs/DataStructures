@@ -23,10 +23,16 @@ public class BSTreeOperationsTest {
 		bstreeOperations.insertIterative(head, new Node<Integer>(78));
 		bstreeOperations.insertIterative(head, new Node<Integer>(72));
 		bstreeOperations.insertIterative(head, new Node<Integer>(90));
-		// bstreeOperations.inOrderTraversalIterative(head);
-
-		bstreeOperations.LowestCommonAncesterBST(head, 39, 48);
-
+		bstreeOperations.inOrderTraversalIterative(head);
+        System.out.println("########################");
+        System.out.println(bstreeOperations.NumberOFNodesBST(head));
+		BSTreeOperations bstreeOperations2 = new BSTreeOperations();
+		Node<Integer> head2 = bstreeOperations2.insertIterative(null, new Node<Integer>(52));
+		bstreeOperations2.insertIterative(head2, new Node<Integer>(33));
+		bstreeOperations2.insertIterative(head2, new Node<Integer>(58));
+		bstreeOperations2.inOrderTraversalIterative(head2);
+		System.out.println("########################");
+		System.out.println(bstreeOperations2.NumberOFNodesBST(head2));
 		/*
 		 * Node<Integer> head2 = bstreeOperations.insertIterative(null, new
 		 * Node<Integer>(52)); head2.setLeftChild(new Node<Integer>(93));

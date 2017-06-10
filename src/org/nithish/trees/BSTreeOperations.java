@@ -391,6 +391,7 @@ public class BSTreeOperations {
 
 	/**
 	 * LowestCommonAncesterBST
+	 * 
 	 * @param root
 	 * @param i1
 	 * @param i2
@@ -409,6 +410,16 @@ public class BSTreeOperations {
 			}
 		}
 		return 0;
+	}
+
+	public int NumberOFNodesBST(Node<Integer> root) {
+		if (root == null) {
+			return 0;
+		} else if (root.leftChild == null && root.rightChild == null) {
+			return 1;
+		} else {
+			return 1 + NumberOFNodesBST(root.leftChild) + NumberOFNodesBST(root.rightChild);
+		}
 	}
 
 }
