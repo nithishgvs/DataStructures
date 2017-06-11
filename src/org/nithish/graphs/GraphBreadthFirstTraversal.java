@@ -13,11 +13,11 @@ public class GraphBreadthFirstTraversal {
 	public static void main(String[] args) throws QueueOverFlowException, QueueUnderFlowException {
 		Graph graph = new AdjacencyMatrixGraph(N, Graph.GraphType.DIRECTED);
 		graph.addEdge(0, 1);
-        graph.addEdge(0, 2);
-        graph.addEdge(1, 3);
-        graph.addEdge(2, 4);
-        graph.addEdge(4, 1);
-        graph.addEdge(4, 3);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(4, 1);
+		graph.addEdge(4, 3);
 
 		int[] visited = new int[] { 0, 0, 0, 0, 0 };
 
@@ -30,6 +30,14 @@ public class GraphBreadthFirstTraversal {
 
 	}
 
+	/**
+	 * 
+	 * @param graph
+	 * @param visited
+	 * @param currentVertex
+	 * @throws QueueOverFlowException
+	 * @throws QueueUnderFlowException
+	 */
 	private static void breadthFirstTraversal(Graph graph, int[] visited, int currentVertex)
 			throws QueueOverFlowException, QueueUnderFlowException {
 		Queue<Integer> queue = new Queue(Integer.class);

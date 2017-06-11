@@ -1,6 +1,7 @@
 package org.nithish.trees;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.nithish.queue.Queue;
 import org.nithish.queue.Queue.QueueOverFlowException;
@@ -9,7 +10,7 @@ import org.nithish.stack.Stack;
 import org.nithish.stack.StackOverFlowException;
 import org.nithish.stack.StackUnderFlowException;
 
-public class PracticeTreesSet1 {
+public class PracticeTreesSet {
 
 	/**
 	 * Size Of a Tree
@@ -349,7 +350,7 @@ public class PracticeTreesSet1 {
 		stack.push(root);
 		while (!stack.isEmpty()) {
 			Node<Integer> temp = stack.pop();
-			System.out.print(temp.data+"->");
+			System.out.print(temp.data + "->");
 			if (temp.rightChild != null) {
 				stack.push(temp.rightChild);
 			}
@@ -357,5 +358,58 @@ public class PracticeTreesSet1 {
 				stack.push(temp.leftChild);
 			}
 		}
+	}
+
+	/**
+	 * 
+	 * @param root
+	 * @param al
+	 */
+	public void rootToLeafPaths(Node<Integer> root, ArrayList<Integer> al) {
+		if (root == null) {
+			return;
+		}
+		al.add(root.data);
+		if (root.leftChild == null && root.rightChild == null) {
+			printArrayList(al);
+			return;
+		}
+
+		if (root.leftChild != null) {
+			rootToLeafPaths(root.leftChild, new ArrayList<Integer>(al));
+		}
+		if (root.rightChild != null) {
+			rootToLeafPaths(root.rightChild, new ArrayList<Integer>(al));
+		}
+
+	}
+
+	/**
+	 * 
+	 * @param root
+	 * @param sum
+	 * @param path
+	 * @return
+	 */
+	public boolean pathsEqualToSum(Node<Integer> root, int sum, List<Node> path) {
+		if (root == null) {
+			return false;
+		}
+
+		if (root.leftChild == null && root.rightChild == null) {
+			if (root.data == sum) {
+				path.add(root);
+				return true;
+			} else {
+				return false;
+			}
+		}
+		if (pathsEqualToSum(root.leftChild, sum - root.data, path)
+				|| pathsEqualToSum(root.rightChild, sum - root.data, path)) {
+			path.add(root);
+			return true;
+		}
+		return false;
+
 	}
 }
