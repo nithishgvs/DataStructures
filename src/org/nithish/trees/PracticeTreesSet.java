@@ -1,7 +1,7 @@
 package org.nithish.trees;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.nithish.queue.Queue;
 import org.nithish.queue.Queue.QueueOverFlowException;
@@ -11,6 +11,8 @@ import org.nithish.stack.StackOverFlowException;
 import org.nithish.stack.StackUnderFlowException;
 
 public class PracticeTreesSet {
+
+	Node<Integer> root;
 
 	/**
 	 * Size Of a Tree
@@ -78,6 +80,36 @@ public class PracticeTreesSet {
 		Node<Integer> temp = root.getLeftChild();
 		root.setLeftChild(root.getRightChild());
 		root.setRightChild(temp);
+	}
+
+	/**
+	 * 
+	 * @param root
+	 * @return
+	 * @throws StackOverFlowException
+	 * @throws StackUnderFlowException
+	 */
+	public Node<Integer> mirrorTreeWithoutRecursion(Node<Integer> root)
+			throws StackOverFlowException, StackUnderFlowException {
+		if (root == null) {
+			return null;
+		}
+		Stack<Node> stack = new Stack<>();
+		stack.push(root);
+		while (!stack.isEmpty()) {
+			Node<Integer> elem = stack.pop();
+			Node<Integer> temp = elem.rightChild;
+			elem.rightChild = elem.leftChild;
+			elem.leftChild = temp;
+			if (elem.leftChild != null) {
+				stack.push(elem.leftChild);
+			}
+			if (elem.rightChild != null) {
+				stack.push(elem.rightChild);
+			}
+		}
+		return root;
+
 	}
 
 	/**
@@ -412,4 +444,122 @@ public class PracticeTreesSet {
 		return false;
 
 	}
+
+	/**
+	 * 
+	 * @param root
+	 * @return
+	 */
+	public int minimumDepth(Node<Integer> root) {
+
+		if (root == null) {
+			return 0;
+		}
+		if (root.getLeftChild() == null && root.getRightChild() == null) {
+			return 1;
+		}
+		int leftDepth = root.leftChild != null ? minimumDepth(root.leftChild) : Integer.MAX_VALUE;
+		int rightDepth = root.rightChild != null ? minimumDepth(root.rightChild) : Integer.MAX_VALUE;
+		return 1 + Math.min(rightDepth, leftDepth);
+	}
+
+	/**
+	 * 
+	 * @param root
+	 * @param al
+	 */
+	public void leftMostView(Node<Integer> root, ArrayList<Integer> al) {
+		if (root == null) {
+			return;
+		}
+		al.add(root.data);
+		if (root.leftChild != null) {
+			leftMostView(root.leftChild, new ArrayList<Integer>(al));
+		} else {
+			printArrayList(al);
+		}
+	}
+
+	/**
+	 * 
+	 * @param root
+	 * @param leftOrRight
+	 * @return
+	 */
+	public int sumOfAllLeftLeaves(Node<Integer> root, boolean leftOrRight) {
+		if (root == null) {
+			return 0;
+		}
+		if (root.leftChild == null && root.rightChild == null) {
+			if (leftOrRight) {
+				return root.data;
+			} else {
+				return 0;
+			}
+
+		}
+		int leftDepth = root.leftChild != null ? sumOfAllLeftLeaves(root.leftChild, true) : 0;
+		int rightDepth = root.rightChild != null ? sumOfAllLeftLeaves(root.rightChild, false) : 0;
+
+		return leftDepth + rightDepth;
+	}
+
+	/**
+	 * Create Bst Using Sorted Array if we just add this to tree we get skewed
+	 * tree so we select mid of array and add elements to left to left subtree
+	 * and elements to right subtree and call this function recursively
+	 * 
+	 * @param min
+	 * @param max
+	 * @param array
+	 * @return
+	 */
+	public Node<Integer> CreateBstUsingSortedArray(int min, int max, int[] array) {
+		if (min == max) {
+			return new Node<Integer>(array[min]);
+		}
+		if (min > max) {
+			return null;
+		}
+		int mid = (min + max) / 2 + (min + max) % 2;
+		System.out.println("Mid: " + mid);
+		Node<Integer> node = new Node<Integer>(array[mid]);
+		node.leftChild = CreateBstUsingSortedArray(min, mid - 1, array);
+		node.rightChild = CreateBstUsingSortedArray(mid + 1, max, array);
+		return node;
+
+	}
+
+	/**
+	 * 
+	 * @param root
+	 * @param K
+	 */
+	public void PrintNodesAtKDistance(Node<Integer> root, int K) {
+
+		if (root == null || K < 0)
+			return;
+		// If we reach a k distant node, print it
+		if (K == 0) {
+			System.out.print(root.data);
+			System.out.println("");
+			return;
+		}
+		PrintNodesAtKDistance(root.leftChild, K - 1);
+		PrintNodesAtKDistance(root.rightChild, K - 1);
+	}
+
+	public Node<Integer> find(Node<Integer> root, int val) {
+		Node<Integer> result = null;
+		if (root.getLeftChild() != null)
+			result = find(root.getLeftChild(), val);
+
+		if (root.data == val)
+			return root;
+		if (result == null && root.getRightChild() != null)
+			result = find(root.rightChild, val);
+
+		return result;
+	}
+
 }

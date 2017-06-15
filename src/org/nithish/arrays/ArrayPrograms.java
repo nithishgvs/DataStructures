@@ -104,35 +104,59 @@ public class ArrayPrograms {
 	}
 
 	public static void print(int[] listToSort) {
-        for (int el : listToSort) {
-            System.out.print(el + ",");
-        }
-        System.out.println();
-    }
-	
+		for (int el : listToSort) {
+			System.out.print(el + ",");
+		}
+		System.out.println();
+	}
+
 	public static int minMoves(int[] nums) {
-        //n-2+(max-min)
-        int min = Integer.MAX_VALUE;
-        int sum = 0;
-        for(int n : nums)
-        {
-            if(n < min)
-                min = n;
-            sum+= n;
-        }
-        
-        return(sum -(nums.length*min));
-    }
-	
-	
+		// n-2+(max-min)
+		int min = Integer.MAX_VALUE;
+		int sum = 0;
+		for (int n : nums) {
+			if (n < min)
+				min = n;
+			sum += n;
+		}
+
+		return (sum - (nums.length * min));
+	}
+
+	public static void missingNumber(int[] array1, int[] array2) {
+		int result = 0;
+		for (int i = 0; i < array2.length; i++) {
+			for (int y = 0; y < array1.length; y++) {
+				if ((array2[i] ^ array1[y]) == 0) {
+					result = 1;
+					System.out.println(array1[i] ^ array2[y]);
+					System.out.println(array1[i]+" "+array2[y] );
+					continue;
+				} else {
+					result=0;
+				}
+			}
+			if (result == 0) {
+				System.out.println("Fount the missing: "+array2[i]);
+				break;
+			}
+			
+		}
+
+	}
+
 	public static void main(String[] args) {
 		int array[] = { 3, 3, 4, 2, 4, 4, 2, 4, 4 };
 		int mPlusN[] = { 2, 8, -1, -1, -1, 13, -1, 15, 20 };
 		int N[] = { 5, 7, 9, 25 };
 		int n = N.length;
 		int m = mPlusN.length - n;
-		mergeArraysMoveToEnd(mPlusN,m+n);
+		mergeArraysMoveToEnd(mPlusN, m + n);
 		System.out.println(minMoves(N));
+		int array1[] = { 1, 2 };
+		int array2[] = { 1 };
+		missingNumber(array1, array2);
+
 	}
 
 }
