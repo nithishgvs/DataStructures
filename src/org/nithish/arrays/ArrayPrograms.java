@@ -144,6 +144,8 @@ public class ArrayPrograms {
 		}
 
 	}
+	
+	
 
 	public static void main(String[] args) {
 		int array[] = { 3, 3, 4, 2, 4, 4, 2, 4, 4 };
@@ -156,6 +158,7 @@ public class ArrayPrograms {
 		int array1[] = { 1, 2 };
 		int array2[] = { 1 };
 		missingNumber(array1, array2);
+		int arr[] = {1, 2, 3, 4, 4, 4, 5, 6};
 
 	}
 
