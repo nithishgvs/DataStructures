@@ -12,7 +12,7 @@ import org.nithish.stack.StackUnderFlowException;
 public class BSTreeOperations {
 
 	/**
-	 * Recursive insertionn BST
+	 * Recursive insertion BST
 	 * 
 	 * @param root
 	 * @param node

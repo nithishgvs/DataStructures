@@ -1,11 +1,13 @@
 package org.nithish.sorting;
 
 /**
- * Created by jananiravi on 11/15/15.
+ * 
+ * @author nithishgvs
+ *
  */
 public class QuickSort {
 
-    private static int listToSort[] = new int[] {6, 5, 11, 4, 2, 5, 10, 3, 7, 8, 9};
+    private static int listToSort[] = {8,7,6,-100,3,4,12,15,-10,666,222,9999};
 
     public static void main(String[] args) {
         print(listToSort);
