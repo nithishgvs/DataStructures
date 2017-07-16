@@ -1,4 +1,4 @@
-package org.nithish.JavaGeneral;
+package org.nithish.Java_general;
 
 import java.util.HashMap;
 import java.util.Map;
